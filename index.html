@@ -79,7 +79,7 @@
 
     <script>
         const texts = document.querySelector(".texts");
-
+console.log(texts);
         window.SpeechRecognition =
             window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -88,6 +88,7 @@
 
         let p = document.createElement("p");
         recognition.addEventListener("result", (e) => {
+           console.log(e);
             texts.appendChild(p);
 
             const text = Array.from(e.results)
