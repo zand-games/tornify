@@ -78,42 +78,58 @@
     </section>
 
     <script>
-        const texts = document.querySelector(".texts");
+      const texts = document.querySelector(".texts");
 
-        window.SpeechRecognition =
-            window.SpeechRecognition || window.webkitSpeechRecognition;
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const recognition = new SpeechRecognition();
-        recognition.interimResults = true;
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
 
-        let p = document.createElement("p");
-        recognition.addEventListener("result", (e) => {
-            texts.appendChild(p);
+let p = document.createElement("p");
 
-            const text = Array.from(e.results)
-                .map((result) => result[0])
-                .map((result) => result.transcript)
-                .join("");
-            p.innerText = text;
-            if (e.results[0].isFinal) {
-                var stringArray = p.innerText.split(/(\s+)/);
-                if (stringArray.length > 1) {
-                    alert("Compound words are not allowed. Repeat again please!");
-                } else {
-                    p = document.createElement("p");
-                }
-            }
-        });
+recognition.addEventListener("result", (e) => {
+  texts.appendChild(p);
+  const text = Array.from(e.results)
+    .map((result) => result[0])
+    .map((result) => result.transcript)
+    .join("");
 
-        recognition.addEventListener("end", () => {
-            recognition.start();
-        });
+  p.innerText = text;
+  if (e.results[0].isFinal) {
+    if (text.includes("how are you")) {
+      p = document.createElement("p");
+      p.classList.add("replay");
+      p.innerText = "I am fine";
+      texts.appendChild(p);
+    }
+    if (
+      text.includes("what's your name") ||
+      text.includes("what is your name")
+    ) {
+      p = document.createElement("p");
+      p.classList.add("replay");
+      p.innerText = "My Name is Cifar";
+      texts.appendChild(p);
+    }
+    if (text.includes("open my YouTube")) {
+      p = document.createElement("p");
+      p.classList.add("replay");
+      p.innerText = "opening youtube channel";
+      texts.appendChild(p);
+      console.log("opening youtube");
+      window.open("https://www.youtube.com/channel/UCdxaLo9ALJgXgOUDURRPGiQ");
+    }
+    p = document.createElement("p");
+  }
+});
 
-        recognition.start();
+recognition.addEventListener("end", () => {
+  recognition.start();
+});
 
-        function validate(val) {
+recognition.start();
 
-        }       
     </script>
 </body>
 
