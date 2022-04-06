@@ -1,10 +1,20 @@
-
 const btnDice = document.getElementById("btnDice");
 const btnPlay = document.getElementById("btnPlay");
 const txtRound = document.getElementById("round_time");
 const lbltalk = document.getElementById("lbltalk");
+const theme = document.getElementById("theme");
+const themeLable = document.getElementById("lblTitle");
+
 btnPlayStatus(false);
 lbltalkVisibile(false);
+themeVisibility(false);
+window.addEventListener("keyup", event => {
+    var KeyID = (window.event) ? event.keyCode : e.keyCode;
+    if (KeyID == 113) {
+        theme.innerText = window.randomWords();
+        themeVisibility(true);
+    }
+});
 
 txtRound.addEventListener('keyup', (event) => {
     switch (txtRound.value) {
@@ -112,4 +122,11 @@ function lbltalkVisibile(val) {
         lbltalk.style.display = 'inline';
     else
         lbltalk.style.display = 'none';
+}
+
+function themeVisibility(val) {
+    if (val)
+        themeLable.style.visibility = "visible";
+    else
+        themeLable.style.visibility = "hidden";
 }

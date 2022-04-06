@@ -34,7 +34,7 @@ section p {
     margin-bottom: 10px;
 }
 
-section label {
+section #lbltalk {
     text-align: right;
     color: rgb(255, 255, 255);
     width: 100%;
@@ -43,6 +43,26 @@ section label {
     margin-left: 50px;
     font-size: 1.5em;
     animation: animate 1.5s linear infinite;
+}
+
+section #lblTitle {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    margin-bottom: 10px;
+    display: block !important;
+    margin-left: 0px;
+    font-size: 1.5em;
+}
+
+.theme {
+    width: 17px;
+    height: 15px;
+    background-size: 100px;
+    display: inline-block;
+    margin-left: 0px;
+    vertical-align: inherit;
+    color: red;
 }
 
 @keyframes animate {
@@ -65,7 +85,7 @@ section a {
     display: block;
     width: 100%;
     padding: 5px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     text-decoration: none;
 
 }

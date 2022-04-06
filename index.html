@@ -7,19 +7,27 @@
     <title>Tornify Game | zand.games</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="./style.css">
+    <script type="module">
+        import rnd from "./random-words.js";
+        window.randomWords = rnd;
+    </script>
 </head>
 
 <body>
     <section>
         <h1>Tornify Game<br></h1>
         <p>Only available in Chrome</p>
-        <a target="_blank" href="https://www.zand.games/tornify">Game Description! here!</a>
-
+        <a target="_blank" href="https://www.zand.games/tornify">Game Rules! here!</a>
+        <p>Press F2 if you need a topic</p>
+        <label id="lblTitle">
+            <span id="theme" class="theme"></span>
+        </label>
         <div class="container">
             <button onclick="dice()" id="btnDice">Roll Dice!</button>
             <input type="number" name="round_time" id="round_time" placeholder="Round Time" class="Input-text" />
             <button onclick="startGame()" id="btnPlay">Play!</button>
             <label id="lbltalk">Please Talk!</label>
+
             <div class="texts">
             </div>
         </div>
