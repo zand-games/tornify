@@ -2,8 +2,10 @@
 const btnDice = document.getElementById("btnDice");
 const btnPlay = document.getElementById("btnPlay");
 const txtRound = document.getElementById("round_time");
-
+const lbltalk = document.getElementById("lbltalk");
 btnPlayStatus(false);
+lbltalkVisibile(false);
+
 txtRound.addEventListener('keyup', (event) => {
     switch (txtRound.value) {
         case '11':
@@ -38,13 +40,11 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         var stringArray = p.innerText.split(/(\s+)/);
         if (stringArray.length > 1) {
-            //   alert("Compound words are not allowed. Repeat again please!");
-            //p.className
             p.setAttribute("style", "background-color:red;");
 
         }
         p = document.createElement("p");
-
+        window.scrollTo(0, document.body.scrollHeight);
     }
 });
 
@@ -56,6 +56,7 @@ recognition.addEventListener("end", () => {
 function startGame() {
     texts.innerHTML = '';
     gameInterval = setInterval(game_counter, 1000);
+    lbltalkVisibile(true);
     btnPlayStatus(false);
     diceStatus(false);
     recognition.start();
@@ -94,6 +95,8 @@ function game_counter() {
         clearInterval(gameInterval);
         diceStatus(true);
         btnPlayStatus(false);
+        lbltalkVisibile(false);
+        alert("Round is finished!");
     }
 }
 function btnPlayStatus(val) {
@@ -102,4 +105,11 @@ function btnPlayStatus(val) {
 function diceStatus(val) {
     btnDice.disabled = !val;
     txtRound.disabled = !val;
+}
+
+function lbltalkVisibile(val) {
+    if (val)
+        lbltalk.style.display = 'inline';
+    else
+        lbltalk.style.display = 'none';
 }
