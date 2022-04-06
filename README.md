@@ -1,4 +1,6 @@
 # Tornify
+Playe from here: https://zand-games.github.io/tornify
+
 To read more about the game visit this url: https://www.zand.games/tornify
 
 ## Stream of Consciousness
