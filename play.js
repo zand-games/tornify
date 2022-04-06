@@ -38,10 +38,13 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         var stringArray = p.innerText.split(/(\s+)/);
         if (stringArray.length > 1) {
-            alert("Compound words are not allowed. Repeat again please!");
-        } else {
-            p = document.createElement("p");
+            //   alert("Compound words are not allowed. Repeat again please!");
+            //p.className
+            p.setAttribute("style", "background-color:red;");
+
         }
+        p = document.createElement("p");
+
     }
 });
 
