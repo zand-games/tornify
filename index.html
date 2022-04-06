@@ -6,65 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-family: "Montserrat";
-            font-size: 20px;
-        }
-
-        section {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: flex-start;
-            background-color: rgb(37, 37, 37);
-            flex-direction: column;
-            padding: 50px 0;
-        }
-
-        section h1 {
-            color: rgba(255, 255, 255, 0.322);
-            text-align: center;
-            width: 100%;
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        section p {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.322);
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 500px;
-            margin: 0 auto;
-            justify-content: center;
-        }
-
-        .texts p {
-            color: black;
-            text-align: left;
-            width: 100%;
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .texts p.replay {
-            text-align: right;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -76,46 +18,7 @@
             </div>
         </div>
     </section>
-
-    <script>
-        const texts = document.querySelector(".texts");
-console.log(texts);
-        window.SpeechRecognition =
-            window.SpeechRecognition || window.webkitSpeechRecognition;
-
-        const recognition = new SpeechRecognition();
-        recognition.interimResults = true;
-
-        let p = document.createElement("p");
-        recognition.addEventListener("result", (e) => {
-           console.log(e);
-            texts.appendChild(p);
-
-            const text = Array.from(e.results)
-                .map((result) => result[0])
-                .map((result) => result.transcript)
-                .join("");
-            p.innerText = text;
-            if (e.results[0].isFinal) {
-                var stringArray = p.innerText.split(/(\s+)/);
-                if (stringArray.length > 1) {
-                    alert("Compound words are not allowed. Repeat again please!");
-                } else {
-                    p = document.createElement("p");
-                }
-            }
-        });
-
-        recognition.addEventListener("end", () => {
-            recognition.start();
-        });
-
-        recognition.start();
-
-        function validate(val) {
-
-        }       
-    </script>
+    <script src="play.js"></script>
 </body>
 
 </html>
