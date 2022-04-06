@@ -1,14 +1,33 @@
+
+const btnDice = document.getElementById("btnDice");
+const btnPlay = document.getElementById("btnPlay");
+const txtRound = document.getElementById("round_time");
+
+btnPlayStatus(false);
+txtRound.addEventListener('keyup', (event) => {
+    switch (txtRound.value) {
+        case '11':
+        case '22':
+        case '33':
+        case '44':
+        case '55':
+            btnPlayStatus(true);
+            break;
+        default:
+            btnPlayStatus(false);
+            break;
+    }
+});
+var game_round_active = false;
 const texts = document.querySelector(".texts");
-//console.log(texts);
 window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const recognition = new SpeechRecognition();
+var recognition = new SpeechRecognition();
 recognition.interimResults = true;
 
 let p = document.createElement("p");
 recognition.addEventListener("result", (e) => {
-    //console.log(e);
     texts.appendChild(p);
 
     const text = Array.from(e.results)
@@ -27,7 +46,57 @@ recognition.addEventListener("result", (e) => {
 });
 
 recognition.addEventListener("end", () => {
-    recognition.start();
+    if (txtRound.value > 0)
+        recognition.start();
 });
 
-recognition.start();
+function startGame() {
+    texts.innerHTML = '';
+    gameInterval = setInterval(game_counter, 1000);
+    btnPlayStatus(false);
+    diceStatus(false);
+    recognition.start();
+}
+
+var silentInterval = null;
+var gameInterval = null;
+
+function dice() {
+    const r = Math.ceil(Math.random() * 6);
+    if (r == 6) {
+        txtRound.value = r;
+        alert("Please be silent for 6 seconds.");
+        silentInterval = setInterval(silent_counter, 1000);
+        btnPlayStatus(false);
+    } else {
+        txtRound.value = r.toString() + r.toString();
+        btnPlayStatus(true);
+    }
+    diceStatus(false);
+}
+
+function silent_counter() {
+    if (txtRound.value > 0) {
+        txtRound.value = txtRound.value - 1;
+    } else {
+        clearInterval(silentInterval);
+        diceStatus(true);
+    }
+}
+
+function game_counter() {
+    if (txtRound.value > 0) {
+        txtRound.value = txtRound.value - 1;
+    } else {
+        clearInterval(gameInterval);
+        diceStatus(true);
+        btnPlayStatus(false);
+    }
+}
+function btnPlayStatus(val) {
+    btnPlay.disabled = !val;
+}
+function diceStatus(val) {
+    btnDice.disabled = !val;
+    txtRound.disabled = !val;
+}
