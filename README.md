@@ -1,6 +1,4 @@
 # Tornify
-Tornify Game, Which is part of http://Zand.Games
-
 To read more about the game visit this url: https://www.zand.games/tornify
 
 ## Stream of Consciousness
