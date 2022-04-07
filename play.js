@@ -4,16 +4,14 @@ const txtRound = document.getElementById("round_time");
 const lbltalk = document.getElementById("lbltalk");
 const theme = document.getElementById("theme");
 const themeLable = document.getElementById("lblTitle");
+const topicgen = document.getElementById("topicgenerator");
 
 btnPlayStatus(false);
 lbltalkVisibile(false);
 themeVisibility(false);
-window.addEventListener("keyup", event => {
-    var KeyID = (window.event) ? event.keyCode : e.keyCode;
-    if (KeyID == 113) {
-        theme.innerText = window.randomWords();
-        themeVisibility(true);
-    }
+topicgen.addEventListener("click", event => {
+    theme.innerText = window.randomWords();
+    themeVisibility(true);
 });
 
 txtRound.addEventListener('keyup', (event) => {
@@ -50,8 +48,9 @@ recognition.addEventListener("result", (e) => {
     if (e.results[0].isFinal) {
         var stringArray = p.innerText.split(/(\s+)/);
         if (stringArray.length > 1) {
-            p.setAttribute("style", "background-color:red;");
-
+            p.setAttribute("style", "background-color:#F47070;");
+        } else {
+            p.setAttribute("style", "background-color:#C6E584;");
         }
         p = document.createElement("p");
         window.scrollTo(0, document.body.scrollHeight);
